@@ -1,25 +1,21 @@
-# .github/workflows/build.yml
-name: Node Build.
-
-on: [push]
-
+name: Node Build
+'on':
+  - push
 jobs:
-    mainbuild:
- 
-        runs-on: ${{ matrix.os }}
-     
-    strategy:
-        matrix:
-            node-version: [12.x]
-            os: [windows-latest]
-         
-    steps:
+  mainbuild:
+    runs-on: '${{ matrix.os }}'
+  strategy:
+    matrix:
+      node-version:
+        - 12.x
+      os:
+        - windows-latest
+  steps:
     - uses: actions/checkout@v1
     - name: Run node.js on latest Windows.
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
-
+        node-version: '${{ matrix.node-version }}'
     - name: Install NPM and build.
       run: |
         npm ci
